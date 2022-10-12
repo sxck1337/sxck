@@ -54,25 +54,15 @@ class app {
     constructor() {
         this.generateQuote(); // generate quote on page load
 
-        setTimeout(() => {
-            if(localStorage.getItem('theme') === "light") { // check if theme is light or dark and set it accordingly on page load
-                this.theme = "light";
-                document.getElementById("body").setAttribute("data-theme", "light");
-            }
-            document.getElementById("theme-switch").addEventListener("click", this.switchTheme); // switch theme on click
+        if(localStorage.getItem('theme') === "light") { // check if theme is light or dark and set it accordingly on page load
+            this.theme = "light";
+            document.getElementById("body").setAttribute("data-theme", "light");
+        }
+        document.getElementById("theme-switch").addEventListener("click", this.switchTheme); // switch theme on click
 
-            this.getRepos(); // get repos on page load
-        }, 500);
+        this.getRepos(); // get repos on page load
+     
     }
 }
 
 new app();
-
-
-
-
-/*
-
-    
-
-*/
