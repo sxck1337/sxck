@@ -1,0 +1,500 @@
+selector { cursor: none; }
+
+
+
+:root {
+    --bg-color: rgb(20, 20, 20);
+    --card-color: rgba(23, 23, 23, 0.831);
+  }
+
+  .row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 50%;
+  }
+  
+  body {
+    align-items: center;
+    background-color: var(--bg-color);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    margin: 0px;
+    overflow: hidden;
+    padding: 0px;
+  }
+  
+  #cards {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    gap: 8px;  
+    max-width: 916px;
+    width: calc(100% - 20px);
+  }
+  
+  #cards:hover > .card::after {
+    opacity: 1;
+  }
+  
+  .card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    height: 260px;
+    flex-direction: column;
+    position: relative;
+    width: 300px;  
+  }
+  
+  .card:hover::before {
+    opacity: 1;
+  }
+  
+  .card::before,
+  .card::after {
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    transition: opacity 500ms;
+    width: 100%;
+  }
+  
+  .card::before {
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(255, 255, 255, 0.06),
+      transparent 40%
+    );
+    z-index: 3;
+  }
+  
+  .card::after {  
+    background: radial-gradient(
+      600px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(255, 255, 255, 0.4),
+      transparent 40%
+    );
+    z-index: 1;
+  }
+  
+  .card > .card-content {
+    background-color: var(--card-color);
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    inset: 1px;
+    padding: 10px;
+    position: absolute;
+    z-index: 2;
+  }
+  
+  /* -- ↓ ↓ ↓ extra card content styles ↓ ↓ ↓ -- */
+  
+  h1, h2, h3, h4, span {
+    color: rgb(240, 240, 240);
+    font-family: "Rubik", sans-serif;
+    font-weight: 400;
+    margin: 0px;
+  }
+  
+  i {  
+    color: rgb(240, 240, 240);
+  }
+  
+  .card-image {
+    align-items: center;
+    display: flex;
+    height: 140px;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .card-image > i {
+    font-size: 6em;
+    opacity: 0.25;
+  }
+  
+  .card-info-wrapper {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-start;
+    padding: 0px 20px;
+  }
+  
+  .card-info {
+    align-items: flex-start;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .card-info > i {  
+    font-size: 1em;
+    height: 20px;
+    line-height: 20px;
+  }
+  
+  .card-info-title > h3 {
+    font-size: 1.1em;
+    line-height: 20px;
+  }
+  
+  .card-info-title > h4 {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85em;
+    margin-top: 8px;
+  }
+  
+  /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
+  
+  @media(max-width: 1000px) {
+    body {
+      align-items: flex-start;  
+      overflow: auto;
+    }
+    
+    #cards {    
+      max-width: 1000px;
+      padding: 10px 0px;
+    }
+    
+    .card {
+      flex-shrink: 1;
+      width: calc(50% - 4px);
+    }
+  }
+  
+  @media(max-width: 500px) {
+    .card {
+      height: 180px;
+    }
+    
+    .card-image {
+      height: 80px;  
+    }
+    
+    .card-image > i {
+      font-size: 3em;
+    }
+      
+    .card-info-wrapper {
+      padding: 0px 10px;
+    }
+    
+    .card-info > i { 
+      font-size: 0.8em; 
+    }
+    
+    .card-info-title > h3 {
+      font-size: 0.9em;
+    }
+  
+    .card-info-title > h4 {
+      font-size: 0.8em;
+      margin-top: 4px;
+    }
+  }
+  
+  @media(max-width: 320px) {
+    .card {
+      width: 100%;
+    }
+  }
+  
+  /* -- ↓ ↓ ↓ YouTube link styles ↓ ↓ ↓ -- */
+  
+  #youtube-link {
+    bottom: 10px;
+  }
+  
+  #youtube-link > i {
+    color: rgb(239, 83, 80);
+  }
+  
+  #source-link {
+    bottom: 60px;
+  }
+  
+  #source-link > i {
+    color: rgb(94, 106, 210);
+  }
+  
+  .link {
+    align-items: center;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    gap: 5px;
+    left: 10px;
+    padding: 10px 20px;
+    position: fixed;
+    text-decoration: none;
+    z-index: 100;
+  }
+  
+  .link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .link > i, .link > span {
+    height: 20px;
+    line-height: 20px;
+  }
+  
+  .link > span {
+    color: white;
+  }
+
+  .night {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -100;
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+    transform: rotateZ(45deg) scale(2.5);
+ }
+  .shooting_star {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 2px;
+    background: linear-gradient(-45deg, rgb(209, 212, 219), rgba(0, 0, 255, 0));
+    border-radius: 999px;
+    filter: drop-shadow(0 0 6px rgb(255, 255, 255));
+    animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+ }
+  .shooting_star::before {
+    content: '';
+    position: absolute;
+    top: calc(50% - 1px);
+    right: 0;
+    height: 2px;
+    background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgb(239, 239, 239), rgba(0, 0, 255, 0));
+    transform: translateX(50%) rotateZ(45deg);
+    border-radius: 100%;
+    animation: shining 3000ms ease-in-out infinite;
+ }
+  .shooting_star::after {
+    content: '';
+    position: absolute;
+    top: calc(50% - 1px);
+    right: 0;
+    height: 2px;
+    background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgb(250, 250, 251), rgba(0, 0, 255, 0));
+    transform: translateX(50%) rotateZ(45deg);
+    border-radius: 100%;
+    animation: shining 3000ms ease-in-out infinite;
+    transform: translateX(50%) rotateZ(-45deg);
+ }
+  .shooting_star:nth-child(1) {
+    top: calc(50% - 72px);
+    left: calc(50% - 50px);
+    animation-delay: 7820ms;
+ }
+  .shooting_star:nth-child(1)::before, .shooting_star:nth-child(1)::after {
+    animation-delay: 7820ms;
+ }
+  .shooting_star:nth-child(2) {
+    top: calc(50% - -113px);
+    left: calc(50% - 73px);
+    animation-delay: 390ms;
+ }
+  .shooting_star:nth-child(2)::before, .shooting_star:nth-child(2)::after {
+    animation-delay: 390ms;
+ }
+  .shooting_star:nth-child(3) {
+    top: calc(50% - -138px);
+    left: calc(50% - 42px);
+    animation-delay: 5773ms;
+ }
+  .shooting_star:nth-child(3)::before, .shooting_star:nth-child(3)::after {
+    animation-delay: 5773ms;
+ }
+  .shooting_star:nth-child(4) {
+    top: calc(50% - 21px);
+    left: calc(50% - 60px);
+    animation-delay: 7132ms;
+ }
+  .shooting_star:nth-child(4)::before, .shooting_star:nth-child(4)::after {
+    animation-delay: 7132ms;
+ }
+  .shooting_star:nth-child(5) {
+    top: calc(50% - 131px);
+    left: calc(50% - 3px);
+    animation-delay: 8635ms;
+ }
+  .shooting_star:nth-child(5)::before, .shooting_star:nth-child(5)::after {
+    animation-delay: 8635ms;
+ }
+  .shooting_star:nth-child(6) {
+    top: calc(50% - 86px);
+    left: calc(50% - 293px);
+    animation-delay: 149ms;
+ }
+  .shooting_star:nth-child(6)::before, .shooting_star:nth-child(6)::after {
+    animation-delay: 149ms;
+ }
+  .shooting_star:nth-child(7) {
+    top: calc(50% - -66px);
+    left: calc(50% - 25px);
+    animation-delay: 4380ms;
+ }
+  .shooting_star:nth-child(7)::before, .shooting_star:nth-child(7)::after {
+    animation-delay: 4380ms;
+ }
+  .shooting_star:nth-child(8) {
+    top: calc(50% - 158px);
+    left: calc(50% - 49px);
+    animation-delay: 5063ms;
+ }
+  .shooting_star:nth-child(8)::before, .shooting_star:nth-child(8)::after {
+    animation-delay: 5063ms;
+ }
+  .shooting_star:nth-child(9) {
+    top: calc(50% - -155px);
+    left: calc(50% - 78px);
+    animation-delay: 3365ms;
+ }
+  .shooting_star:nth-child(9)::before, .shooting_star:nth-child(9)::after {
+    animation-delay: 3365ms;
+ }
+  .shooting_star:nth-child(10) {
+    top: calc(50% - -129px);
+    left: calc(50% - 265px);
+    animation-delay: 4878ms;
+ }
+  .shooting_star:nth-child(10)::before, .shooting_star:nth-child(10)::after {
+    animation-delay: 4878ms;
+ }
+  .shooting_star:nth-child(11) {
+    top: calc(50% - -150px);
+    left: calc(50% - 81px);
+    animation-delay: 5962ms;
+ }
+  .shooting_star:nth-child(11)::before, .shooting_star:nth-child(11)::after {
+    animation-delay: 5962ms;
+ }
+  .shooting_star:nth-child(12) {
+    top: calc(50% - 150px);
+    left: calc(50% - 186px);
+    animation-delay: 29ms;
+ }
+  .shooting_star:nth-child(12)::before, .shooting_star:nth-child(12)::after {
+    animation-delay: 29ms;
+ }
+  .shooting_star:nth-child(13) {
+    top: calc(50% - 56px);
+    left: calc(50% - 18px);
+    animation-delay: 5723ms;
+ }
+  .shooting_star:nth-child(13)::before, .shooting_star:nth-child(13)::after {
+    animation-delay: 5723ms;
+ }
+  .shooting_star:nth-child(14) {
+    top: calc(50% - -112px);
+    left: calc(50% - 143px);
+    animation-delay: 7047ms;
+ }
+  .shooting_star:nth-child(14)::before, .shooting_star:nth-child(14)::after {
+    animation-delay: 7047ms;
+ }
+  .shooting_star:nth-child(15) {
+    top: calc(50% - -41px);
+    left: calc(50% - 74px);
+    animation-delay: 6812ms;
+ }
+  .shooting_star:nth-child(15)::before, .shooting_star:nth-child(15)::after {
+    animation-delay: 6812ms;
+ }
+  .shooting_star:nth-child(16) {
+    top: calc(50% - -139px);
+    left: calc(50% - 122px);
+    animation-delay: 1126ms;
+ }
+  .shooting_star:nth-child(16)::before, .shooting_star:nth-child(16)::after {
+    animation-delay: 1126ms;
+ }
+  .shooting_star:nth-child(17) {
+    top: calc(50% - -151px);
+    left: calc(50% - 75px);
+    animation-delay: 7600ms;
+ }
+  .shooting_star:nth-child(17)::before, .shooting_star:nth-child(17)::after {
+    animation-delay: 7600ms;
+ }
+  .shooting_star:nth-child(18) {
+    top: calc(50% - 111px);
+    left: calc(50% - 11px);
+    animation-delay: 9176ms;
+ }
+  .shooting_star:nth-child(18)::before, .shooting_star:nth-child(18)::after {
+    animation-delay: 9176ms;
+ }
+  .shooting_star:nth-child(19) {
+    top: calc(50% - -12px);
+    left: calc(50% - 173px);
+    animation-delay: 857ms;
+ }
+  .shooting_star:nth-child(19)::before, .shooting_star:nth-child(19)::after {
+    animation-delay: 857ms;
+ }
+  .shooting_star:nth-child(20) {
+    top: calc(50% - 146px);
+    left: calc(50% - 206px);
+    animation-delay: 6577ms;
+ }
+  .shooting_star:nth-child(20)::before, .shooting_star:nth-child(20)::after {
+    animation-delay: 6577ms;
+ }
+  @keyframes tail {
+    0% {
+      width: 0;
+   }
+    30% {
+      width: 100px;
+   }
+    100% {
+      width: 0;
+   }
+ }
+  @keyframes shining {
+    0% {
+      width: 0;
+   }
+    50% {
+      width: 30px;
+   }
+    100% {
+      width: 0;
+   }
+ }
+  @keyframes shooting {
+    0% {
+      transform: translateX(0);
+   }
+    100% {
+      transform: translateX(300px);
+   }
+ }
+  @keyframes sky {
+    0% {
+      transform: rotate(45deg);
+   }
+    100% {
+      transform: rotate(405deg);
+   }
+ }
